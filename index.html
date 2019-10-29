@@ -10,10 +10,10 @@
 
 <body>
 <div id="add-button">
-    <button data-animal="Cats">Cats</button>
-    <button data-animal="Dogs">Dogs</button>
-    <button data-animal="Horses">Horses</button>
-    <button data-animal="Elephant">Elephant</button>
+    <button class="gif-button" data-animal="Cats">Cats</button>
+    <button class="gif-button" data-animal="Dogs">Dogs</button>
+    <button class="gif-button" data-animal="Horses">Horses</button>
+    <button class="gif-button" data-animal="Elephant">Elephant</button>
 
 </div>
 
@@ -34,6 +34,7 @@
             var b = $("<button>");
             var gifSearch = $("#add-animal").val().trim();
             b.attr("data-animal", gifSearch);
+            b.addClass("gif-button");
             $("#add-button").append(gifSearch);
         }
         
@@ -43,7 +44,7 @@
         });
 
 
-        $("button").on("click", function () {
+        $(".gif-button").on("click", function () {
             var animal = $(this).attr("data-animal");
 
             var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
