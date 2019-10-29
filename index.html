@@ -9,20 +9,39 @@
 </head>
 
 <body>
+<div id="add-button">
     <button data-animal="Cats">Cats</button>
     <button data-animal="Dogs">Dogs</button>
     <button data-animal="Horses">Horses</button>
     <button data-animal="Elephant">Elephant</button>
 
-    <div id="gifs-here"></div>
+</div>
 
     <form>
         <input id="add-animal">
+        <button type="submit" id="search">Search</button>
+
 
     </form>
 
+    <div id="gifs-here"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
+
+       
+        function makeButton () {
+            var b = $("<button>");
+            var gifSearch = $("#add-animal").val().trim();
+            b.attr("data-animal", gifSearch);
+            $("#add-button").append(gifSearch);
+        }
+        
+        $("#search").on("click", function(event){
+            event.preventDefault();
+            makeButton();
+        });
+
 
         $("button").on("click", function () {
             var animal = $(this).attr("data-animal");
@@ -46,7 +65,7 @@
 
                             var rating = results[i].rating;
 
-                            var p = $("<p>").text("Rating" + rating);
+                            var p = $("<p>").text("Rating: " + rating);
 
                             var animalImage = $("<img>");
 
@@ -66,6 +85,26 @@
                 });
 
         }); 
+
+        $(".gif").on("click", function(){
+        
+           
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+
     </script>
 
 </body>
