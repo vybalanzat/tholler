@@ -9,13 +9,13 @@
 </head>
 
 <body>
-<div id="add-button">
-    <button class="gif-button" data-animal="Cats">Cats</button>
-    <button class="gif-button" data-animal="Dogs">Dogs</button>
-    <button class="gif-button" data-animal="Horses">Horses</button>
-    <button class="gif-button" data-animal="Elephant">Elephant</button>
+    <div id="add-button">
+        <button class="gif-button" data-animal="Cats">Cats</button>
+        <button class="gif-button" data-animal="Dogs">Dogs</button>
+        <button class="gif-button" data-animal="Horses">Horses</button>
+        <button class="gif-button" data-animal="Elephant">Elephant</button>
 
-</div>
+    </div>
 
     <form>
         <input id="add-animal">
@@ -29,16 +29,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-       
-        function makeButton () {
+
+        function makeButton() {
             var b = $("<button>");
             var gifSearch = $("#add-animal").val().trim();
             b.attr("data-animal", gifSearch);
             b.addClass("gif-button");
             $("#add-button").append(gifSearch);
         }
-        
-        $("#search").on("click", function(event){
+
+        $("#search").on("click", function (event) {
             event.preventDefault();
             makeButton();
         });
@@ -70,7 +70,14 @@
 
                             var animalImage = $("<img>");
 
-                            animalImage.attr("src", results[i].images.fixed_height.url);
+                            animalImage.attr("src", results[i].images.fixed_height_still.url);
+                            animalImage.attr("still", results[i].images.fixed_height_still.url);
+                            animalImage.attr("animate", results[i].images.fixed_height.url);
+                            animalImage.attr("data-state", "still");
+                            animalImage.addClass("moveGif");
+
+
+
 
                             gifDiv.append(p);
                             gifDiv.append(animalImage);
@@ -83,13 +90,30 @@
 
                     };
 
+                    $(".moveGif").on("click", function () {
+                        var state = $(this).attr("data-state");
+                        if (state === "still") {
+                        $(this).attr("src", $(this).attr("animate"));
+                        $(this).attr("data-state", "animate");
+
+                    }
+                        else {
+                        $(this).attr("src", $(this).attr("still"));
+                        $(this).attr("data-state", "still");
+
+
+                    }
+
+
                 });
 
-        }); 
+        });
 
-        $(".gif").on("click", function(){
-        
-           
+        });
+
+        $(".gif").on("click", function () {
+
+
 
 
 
