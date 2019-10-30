@@ -32,10 +32,11 @@
 
         function makeButton() {
             var b = $("<button>");
-            var gifSearch = $("#add-animal").val().trim();
-            b.attr("data-animal", gifSearch);
+            // var gifSearch = $("#add-animal").val().trim();
+            b.attr("data-animal", $("#add-animal").val().trim());
             b.addClass("gif-button");
-            $("#add-button").append(gifSearch);
+            b.text($("#add-animal").val().trim())
+            $("#add-button").append(b);
         }
 
         $("#search").on("click", function (event) {
@@ -44,7 +45,7 @@
         });
 
 
-        $(".gif-button").on("click", function () {
+        $(document).on("click", '.gif-button', function () {
             var animal = $(this).attr("data-animal");
 
             var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
